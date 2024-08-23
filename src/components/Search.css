@@ -33,3 +33,10 @@
 .searchType {
     font-family: 'Matemasie', sans-serif;
 }
+
+.suggest {
+    width: 75%;
+    background-color: #fff;
+    margin: auto;
+    margin-top: 10px;
+}
