@@ -2,8 +2,12 @@
 
 function Search() {
   return (
-      <div>
-          
+      <div className="container">
+          <div className="search mt-5">
+              <span className="searchType">
+                 <input type="text" /> 
+              </span>
+          </div>
     </div>
   )
 }
