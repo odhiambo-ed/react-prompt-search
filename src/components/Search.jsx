@@ -7,7 +7,7 @@ function Search() {
         <span className="searchType">
           <input type="text" />
         </span>
-        <CiSearch />
+        <CiSearch size={24} />
       </div>
     </div>
   );
