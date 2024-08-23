@@ -5,21 +5,30 @@ import { useEffect, useState } from "react";
 function Search() {
     const [searchTerm, setSearchTerm] = useState("")
     const [search, setSearch] = useState([])
+    const [error, setError] = useState("")
 
     async function fetchUser() {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await res.json();
-      console.log(data);
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/users");
+        const data = await res.json();
+      } catch (e) {
+        setError(e.message)
+      }
+      
     }
 
     useEffect(() => {
         fetchUser()
-    },[])
+    }, [])
+    
+    const searchFilter = () => {
+
+    }
   return (
     <div className="search__container pt-5">
       <div className="search">
         <span className="searchType">Search in Names</span>
-        <input type="text" value={searchTerm} />
+        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         <CiSearch size={24} />
       </div>
       <div className="card suggest">
