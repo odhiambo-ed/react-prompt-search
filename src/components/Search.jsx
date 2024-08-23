@@ -1,12 +1,12 @@
 import { CiSearch } from "react-icons/ci";
+import './Search.css'
 
 function Search() {
   return (
-    <div className="container">
-      <div className="search mt-5">
-        <span className="searchType">
-          <input type="text" />
-        </span>
+    <div className="search__container pt-5">
+      <div className="search">
+        <span className="searchType">Search in Names</span>
+        <input type="text" />
         <CiSearch size={24} />
       </div>
     </div>
