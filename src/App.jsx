@@ -1,10 +1,11 @@
 import './App.css'
+import Search from './components/Search'
 
 function App() {
 
   return (
     <>
-      <h1>Jesus did it again. All Glory to God</h1>
+      <Search />
     </>
   )
 }
