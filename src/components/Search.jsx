@@ -21,10 +21,12 @@ function Search() {
     fetchUser();
   }, []);
 
-  // Filter the users based on the search term
-  const filteredUsers = search.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter users based on the search term if it's not empty
+  const filteredUsers = searchTerm
+    ? search.filter((user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
 
   return (
     <div className="search__container pt-5">
@@ -40,11 +42,15 @@ function Search() {
       <div className="card suggest">
         {error && <p>{error}</p>}
         <ul className="list-group">
-          {filteredUsers.map((user) => (
-            <li key={user.id} className="list-group-item">
-              {user.name}
-            </li>
-          ))}
+          {filteredUsers.length > 0
+            ? filteredUsers.map((user) => (
+                <li key={user.id} className="list-group-item">
+                  {user.name}
+                </li>
+              ))
+            : searchTerm && (
+                <li className="list-group-item text-danger">No results found.</li>
+              )}
         </ul>
       </div>
     </div>
