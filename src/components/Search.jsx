@@ -1,31 +1,31 @@
 import { CiSearch } from "react-icons/ci";
-import './Search.css'
+import "./Search.css";
 import { useEffect, useState } from "react";
 
 function Search() {
-    const [searchTerm, setSearchTerm] = useState("")
-    const [search, setSearch] = useState([])
-    const [error, setError] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [search, setSearch] = useState([]);
+  const [error, setError] = useState("");
 
-    async function fetchUser() {
-      try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/users");
-        const data = await res.json();
-        
-        setSearch(data);
-      } catch (e) {
-        setError(e.message)
-      }
-      
+  async function fetchUser() {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await res.json();
+      setSearch(data);
+    } catch (e) {
+      setError(e.message);
     }
+  }
 
-    useEffect(() => {
-        fetchUser()
-    }, [])
-    
-    const searchFilter = () => {
-        search.filter((user) => user.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    }
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  // Filter the users based on the search term
+  const filteredUsers = search.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="search__container pt-5">
       <div className="search">
@@ -38,9 +38,12 @@ function Search() {
         <CiSearch size={24} />
       </div>
       <div className="card suggest">
+        {error && <p>{error}</p>}
         <ul className="list-group">
-          {searchFilter.map((user) => (
-              <li key={user.id} className="list-group-item">{ user.name }</li>
+          {filteredUsers.map((user) => (
+            <li key={user.id} className="list-group-item">
+              {user.name}
+            </li>
           ))}
         </ul>
       </div>
